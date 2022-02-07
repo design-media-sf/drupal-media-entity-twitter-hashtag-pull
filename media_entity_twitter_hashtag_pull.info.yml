@@ -1,4 +1,4 @@
-name: 'Media entity Twitter: Automatic Pull'
+name: 'Media entity Twitter: Automatic Pull Hashtags'
 description: 'Automatically creates new Twitter media entities from Twitter when there are new Tweets.'
 type: module
 package: Media
