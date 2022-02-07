@@ -1,0 +1,7 @@
+name: 'Media entity Twitter: Automatic Pull'
+description: 'Automatically creates new Twitter media entities from Twitter when there are new Tweets.'
+type: module
+package: Media
+core_version_requirement: ^8.8 || ^9
+dependencies:
+  - media_entity_twitter:media_entity_twitter (>=8.x-2.x)

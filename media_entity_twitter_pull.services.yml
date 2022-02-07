@@ -1,0 +1,6 @@
+services:
+  media_entity_twitter_pull.twitter_api_factory:
+    class: Drupal\media_entity_twitter_pull\TwitterAPIFactory
+  media_entity_twitter_pull.feed_fetcher:
+    class: Drupal\media_entity_twitter_pull\FeedFetcher
+    arguments: ['@media_entity_twitter_pull.twitter_api_factory']

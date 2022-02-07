@@ -1,0 +1,448 @@
+[
+  {
+      "created_at": "Fri Aug 28 07:34:00 +0000 2020",
+      "id": 1299248854232072193,
+      "id_str": "1299248854232072193",
+      "text": "Today is the last day to submit session proposals for @BADCamp https://t.co/J8KV004ay2",
+      "truncated": false,
+      "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "user_mentions": [
+              {
+                  "screen_name": "BADCamp",
+                  "name": "Bay Area Drupal Camp",
+                  "id": 16595328,
+                  "id_str": "16595328",
+                  "indices": [
+                      54,
+                      62
+                  ]
+              }
+          ],
+          "urls": [
+              {
+                  "url": "https://t.co/J8KV004ay2",
+                  "expanded_url": "https://twitter.com/badcamp/status/1299063005792079876",
+                  "display_url": "twitter.com/badcamp/status…",
+                  "indices": [
+                      63,
+                      86
+                  ]
+              }
+          ]
+      },
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+          "id": 2166341,
+          "id_str": "2166341",
+          "name": "Drupal",
+          "screen_name": "drupal",
+          "location": "Internet",
+          "description": "Drupal is a Free, Open, Modular CMS written in PHP. Let's go make something amazing, for everyone!",
+          "url": "https://t.co/K3OLrSLhOe",
+          "entities": {
+              "url": {
+                  "urls": [
+                      {
+                          "url": "https://t.co/K3OLrSLhOe",
+                          "expanded_url": "https://drupal.org",
+                          "display_url": "drupal.org",
+                          "indices": [
+                              0,
+                              23
+                          ]
+                      }
+                  ]
+              },
+              "description": {
+                  "urls": []
+              }
+          },
+          "protected": false,
+          "followers_count": 71456,
+          "friends_count": 307,
+          "listed_count": 3551,
+          "created_at": "Sun Mar 25 09:59:38 +0000 2007",
+          "favourites_count": 635,
+          "utc_offset": null,
+          "time_zone": null,
+          "geo_enabled": true,
+          "verified": true,
+          "statuses_count": 3744,
+          "lang": null,
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "EEEEEE",
+          "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+          "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+          "profile_background_tile": false,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/1258155840546074624/H9IAAYru_normal.jpg",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/1258155840546074624/H9IAAYru_normal.jpg",
+          "profile_banner_url": "https://pbs.twimg.com/profile_banners/2166341/1572425721",
+          "profile_link_color": "0303AA",
+          "profile_sidebar_border_color": "447DBC",
+          "profile_sidebar_fill_color": "B2CCFF",
+          "profile_text_color": "000000",
+          "profile_use_background_image": false,
+          "has_extended_profile": false,
+          "default_profile": false,
+          "default_profile_image": false,
+          "following": true,
+          "follow_request_sent": false,
+          "notifications": false,
+          "translator_type": "none"
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": true,
+      "quoted_status_id": 1299063005792079876,
+      "quoted_status_id_str": "1299063005792079876",
+      "quoted_status": {
+          "created_at": "Thu Aug 27 19:15:30 +0000 2020",
+          "id": 1299063005792079876,
+          "id_str": "1299063005792079876",
+          "text": "Have you propose a session for #BADCamp yet? The clock is ticking—only one day left to submit your ideas to the bes… https://t.co/h5nCn74caV",
+          "truncated": true,
+          "entities": {
+              "hashtags": [
+                  {
+                      "text": "BADCamp",
+                      "indices": [
+                          31,
+                          39
+                      ]
+                  }
+              ],
+              "symbols": [],
+              "user_mentions": [],
+              "urls": [
+                  {
+                      "url": "https://t.co/h5nCn74caV",
+                      "expanded_url": "https://twitter.com/i/web/status/1299063005792079876",
+                      "display_url": "twitter.com/i/web/status/1…",
+                      "indices": [
+                          117,
+                          140
+                      ]
+                  }
+              ]
+          },
+          "source": "<a href=\"https://www.hootsuite.com\" rel=\"nofollow\">Hootsuite Inc.</a>",
+          "in_reply_to_status_id": null,
+          "in_reply_to_status_id_str": null,
+          "in_reply_to_user_id": null,
+          "in_reply_to_user_id_str": null,
+          "in_reply_to_screen_name": null,
+          "user": {
+              "id": 16595328,
+              "id_str": "16595328",
+              "name": "Bay Area Drupal Camp",
+              "screen_name": "BADCamp",
+              "location": "Berkeley CA",
+              "description": "World's raddest Drupal event, coming October 14-17. 4 days of training, summits, sessions, socials, and more!\nAccount managed by @volkswagenchick @KellyDassing",
+              "url": "https://t.co/wYwcUYZBMx",
+              "entities": {
+                  "url": {
+                      "urls": [
+                          {
+                              "url": "https://t.co/wYwcUYZBMx",
+                              "expanded_url": "http://badcamp.org",
+                              "display_url": "badcamp.org",
+                              "indices": [
+                                  0,
+                                  23
+                              ]
+                          }
+                      ]
+                  },
+                  "description": {
+                      "urls": []
+                  }
+              },
+              "protected": false,
+              "followers_count": 2392,
+              "friends_count": 270,
+              "listed_count": 158,
+              "created_at": "Sat Oct 04 21:06:17 +0000 2008",
+              "favourites_count": 2331,
+              "utc_offset": null,
+              "time_zone": null,
+              "geo_enabled": true,
+              "verified": false,
+              "statuses_count": 2950,
+              "lang": null,
+              "contributors_enabled": false,
+              "is_translator": false,
+              "is_translation_enabled": false,
+              "profile_background_color": "C0DEED",
+              "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+              "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+              "profile_background_tile": false,
+              "profile_image_url": "http://pbs.twimg.com/profile_images/1297162212558045184/xXkwly2t_normal.jpg",
+              "profile_image_url_https": "https://pbs.twimg.com/profile_images/1297162212558045184/xXkwly2t_normal.jpg",
+              "profile_banner_url": "https://pbs.twimg.com/profile_banners/16595328/1595437161",
+              "profile_link_color": "1DA1F2",
+              "profile_sidebar_border_color": "C0DEED",
+              "profile_sidebar_fill_color": "DDEEF6",
+              "profile_text_color": "333333",
+              "profile_use_background_image": true,
+              "has_extended_profile": false,
+              "default_profile": true,
+              "default_profile_image": false,
+              "following": false,
+              "follow_request_sent": false,
+              "notifications": false,
+              "translator_type": "none"
+          },
+          "geo": null,
+          "coordinates": null,
+          "place": null,
+          "contributors": null,
+          "is_quote_status": false,
+          "retweet_count": 7,
+          "favorite_count": 10,
+          "favorited": false,
+          "retweeted": false,
+          "possibly_sensitive": false,
+          "lang": "en"
+      },
+      "retweet_count": 1,
+      "favorite_count": 2,
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+  },
+  {
+      "created_at": "Thu Aug 27 20:09:04 +0000 2020",
+      "id": 1299076486796845074,
+      "id_str": "1299076486796845074",
+      "text": "RT @drupaldiversity: Coming up next week: *Discussing Race with Drupal Nerds* with @fredricmitchell. Looks like a great session! \n\nWe'll de…",
+      "truncated": false,
+      "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "user_mentions": [
+              {
+                  "screen_name": "drupaldiversity",
+                  "name": "Diversity&Inclusion",
+                  "id": 790290541426511872,
+                  "id_str": "790290541426511872",
+                  "indices": [
+                      3,
+                      19
+                  ]
+              },
+              {
+                  "screen_name": "fredricmitchell",
+                  "name": "Fredric Mitchell",
+                  "id": 15236634,
+                  "id_str": "15236634",
+                  "indices": [
+                      83,
+                      99
+                  ]
+              }
+          ],
+          "urls": []
+      },
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+          "id": 2166341,
+          "id_str": "2166341",
+          "name": "Drupal",
+          "screen_name": "drupal",
+          "location": "Internet",
+          "description": "Drupal is a Free, Open, Modular CMS written in PHP. Let's go make something amazing, for everyone!",
+          "url": "https://t.co/K3OLrSLhOe",
+          "entities": {
+              "url": {
+                  "urls": [
+                      {
+                          "url": "https://t.co/K3OLrSLhOe",
+                          "expanded_url": "https://drupal.org",
+                          "display_url": "drupal.org",
+                          "indices": [
+                              0,
+                              23
+                          ]
+                      }
+                  ]
+              },
+              "description": {
+                  "urls": []
+              }
+          },
+          "protected": false,
+          "followers_count": 71456,
+          "friends_count": 307,
+          "listed_count": 3551,
+          "created_at": "Sun Mar 25 09:59:38 +0000 2007",
+          "favourites_count": 635,
+          "utc_offset": null,
+          "time_zone": null,
+          "geo_enabled": true,
+          "verified": true,
+          "statuses_count": 3744,
+          "lang": null,
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "EEEEEE",
+          "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+          "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+          "profile_background_tile": false,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/1258155840546074624/H9IAAYru_normal.jpg",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/1258155840546074624/H9IAAYru_normal.jpg",
+          "profile_banner_url": "https://pbs.twimg.com/profile_banners/2166341/1572425721",
+          "profile_link_color": "0303AA",
+          "profile_sidebar_border_color": "447DBC",
+          "profile_sidebar_fill_color": "B2CCFF",
+          "profile_text_color": "000000",
+          "profile_use_background_image": false,
+          "has_extended_profile": false,
+          "default_profile": false,
+          "default_profile_image": false,
+          "following": true,
+          "follow_request_sent": false,
+          "notifications": false,
+          "translator_type": "none"
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "retweeted_status": {
+          "created_at": "Thu Aug 27 13:48:19 +0000 2020",
+          "id": 1298980667225706496,
+          "id_str": "1298980667225706496",
+          "text": "Coming up next week: *Discussing Race with Drupal Nerds* with @fredricmitchell. Looks like a great session! \n\nWe'll… https://t.co/8kqtF8bSiv",
+          "truncated": true,
+          "entities": {
+              "hashtags": [],
+              "symbols": [],
+              "user_mentions": [
+                  {
+                      "screen_name": "fredricmitchell",
+                      "name": "Fredric Mitchell",
+                      "id": 15236634,
+                      "id_str": "15236634",
+                      "indices": [
+                          62,
+                          78
+                      ]
+                  }
+              ],
+              "urls": [
+                  {
+                      "url": "https://t.co/8kqtF8bSiv",
+                      "expanded_url": "https://twitter.com/i/web/status/1298980667225706496",
+                      "display_url": "twitter.com/i/web/status/1…",
+                      "indices": [
+                          117,
+                          140
+                      ]
+                  }
+              ]
+          },
+          "source": "<a href=\"https://about.twitter.com/products/tweetdeck\" rel=\"nofollow\">TweetDeck</a>",
+          "in_reply_to_status_id": null,
+          "in_reply_to_status_id_str": null,
+          "in_reply_to_user_id": null,
+          "in_reply_to_user_id_str": null,
+          "in_reply_to_screen_name": null,
+          "user": {
+              "id": 790290541426511872,
+              "id_str": "790290541426511872",
+              "name": "Diversity&Inclusion",
+              "screen_name": "drupaldiversity",
+              "location": "Everywhere",
+              "description": "Working group addressing diversity and inclusion in the Drupal and web development communities. Not affiliated with the Drupal Association.",
+              "url": "https://t.co/gIUWHse1l0",
+              "entities": {
+                  "url": {
+                      "urls": [
+                          {
+                              "url": "https://t.co/gIUWHse1l0",
+                              "expanded_url": "http://drupaldiversity.com",
+                              "display_url": "drupaldiversity.com",
+                              "indices": [
+                                  0,
+                                  23
+                              ]
+                          }
+                      ]
+                  },
+                  "description": {
+                      "urls": []
+                  }
+              },
+              "protected": false,
+              "followers_count": 1691,
+              "friends_count": 770,
+              "listed_count": 52,
+              "created_at": "Sun Oct 23 20:35:22 +0000 2016",
+              "favourites_count": 384,
+              "utc_offset": null,
+              "time_zone": null,
+              "geo_enabled": false,
+              "verified": false,
+              "statuses_count": 1016,
+              "lang": null,
+              "contributors_enabled": false,
+              "is_translator": false,
+              "is_translation_enabled": false,
+              "profile_background_color": "F5F8FA",
+              "profile_background_image_url": null,
+              "profile_background_image_url_https": null,
+              "profile_background_tile": false,
+              "profile_image_url": "http://pbs.twimg.com/profile_images/831261369471234050/HDQ9m7Ij_normal.jpg",
+              "profile_image_url_https": "https://pbs.twimg.com/profile_images/831261369471234050/HDQ9m7Ij_normal.jpg",
+              "profile_banner_url": "https://pbs.twimg.com/profile_banners/790290541426511872/1493847163",
+              "profile_link_color": "1DA1F2",
+              "profile_sidebar_border_color": "C0DEED",
+              "profile_sidebar_fill_color": "DDEEF6",
+              "profile_text_color": "333333",
+              "profile_use_background_image": true,
+              "has_extended_profile": false,
+              "default_profile": true,
+              "default_profile_image": false,
+              "following": false,
+              "follow_request_sent": false,
+              "notifications": false,
+              "translator_type": "none"
+          },
+          "geo": null,
+          "coordinates": null,
+          "place": null,
+          "contributors": null,
+          "is_quote_status": false,
+          "retweet_count": 9,
+          "favorite_count": 12,
+          "favorited": false,
+          "retweeted": false,
+          "possibly_sensitive": false,
+          "lang": "en"
+      },
+      "is_quote_status": false,
+      "retweet_count": 9,
+      "favorite_count": 0,
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+  }
+]
