@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\Tests\media_entity_twitter_pull\Traits;
+namespace Drupal\Tests\media_entity_twitter_hashtag_pull\Traits;
 
 /**
  * Helper functions for creating mocks used in tests.
  */
-trait MediaEntityTwitterPullMockTrait {
+trait MediaEntityTwitterHashtagPullMockTrait {
 
   /**
    * Creates a mock object for the Twitter API exchange object.

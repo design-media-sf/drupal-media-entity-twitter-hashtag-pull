@@ -1,25 +1,25 @@
 <?php
 
-namespace Drupal\media_entity_twitter_pull\Plugin\QueueWorker;
+namespace Drupal\media_entity_twitter_hashtag_pull\Plugin\QueueWorker;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\State\StateInterface;
 use Drupal\media\MediaTypeInterface;
-use Drupal\media_entity_twitter_pull\FeedFetcherInterface;
+use Drupal\media_entity_twitter_hashtag_pull\FeedFetcherInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Fetches new tweets for a Twitter media entity bundle.
  *
  * @QueueWorker(
- *   id = "media_entity_twitter_pull_fetch",
+ *   id = "media_entity_twitter_hashtag_pull_fetch",
  *   title = @Translation("Twitter API Fetch"),
  *   cron = {"time" = 60}
  * )
  */
-class MediaEntityTwitterPullFetch extends QueueWorkerBase implements ContainerFactoryPluginInterface {
+class MediaEntityTwitterHashtagPullFetch extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
   /**
    * The state key/value store.
@@ -31,7 +31,7 @@ class MediaEntityTwitterPullFetch extends QueueWorkerBase implements ContainerFa
   /**
    * The feed fetcher.
    *
-   * @var \Drupal\media_entity_twitter_pull\FeedFetcherInterface
+   * @var \Drupal\media_entity_twitter_hashtag_pull\FeedFetcherInterface
    */
   protected $feedFetcher;
 
@@ -56,7 +56,7 @@ class MediaEntityTwitterPullFetch extends QueueWorkerBase implements ContainerFa
    *   The plugin implementation definition.
    * @param \Drupal\Core\State\StateInterface $state
    *   The state key/value store.
-   * @param \Drupal\media_entity_twitter_pull\FeedFetcherInterface $feed_fetcher
+   * @param \Drupal\media_entity_twitter_hashtag_pull\FeedFetcherInterface $feed_fetcher
    *   The feed fetcher.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
@@ -77,7 +77,7 @@ class MediaEntityTwitterPullFetch extends QueueWorkerBase implements ContainerFa
       $plugin_id,
       $plugin_definition,
       $container->get('state'),
-      $container->get('media_entity_twitter_pull.feed_fetcher'),
+      $container->get('media_entity_twitter_hashtag_pull.feed_fetcher'),
       $container->get('entity_type.manager')
     );
   }
@@ -91,8 +91,8 @@ class MediaEntityTwitterPullFetch extends QueueWorkerBase implements ContainerFa
       $source_config = $source->getConfiguration();
 
       if ($source->getPluginId() == 'twitter' && $source_config['use_twitter_api']) {
-        $settings = $data->getThirdPartySettings('media_entity_twitter_pull');
-        $settings += ['usernames' => [], 'count' => 10];
+        $settings = $data->getThirdPartySettings('media_entity_twitter_hashtag_pull');
+        $settings += ['usernames' => [], 'hashtags' => [], 'count' => 10];
 
         $bundle_key = $this->mediaStorage->getEntityType()->getKey('bundle');
         $source_field = $source->getSourceFieldDefinition($data)->getName();
@@ -102,10 +102,23 @@ class MediaEntityTwitterPullFetch extends QueueWorkerBase implements ContainerFa
           'oauth_access_token' => $source_config['oauth_access_token'],
           'oauth_access_token_secret' => $source_config['oauth_access_token_secret'],
         ];
-        $since = $this->state->get("media_entity_twitter_pull.{$data->id()}", 1);
+        $since = $this->state->get("media_entity_twitter_hashtag_pull.{$data->id()}", 1);
 
         foreach ($settings['usernames'] as $username) {
           foreach ($this->feedFetcher->getUserTimelineTweets($username, $credentials, $settings['count'], $since) as $tweet_id) {
+            $this->mediaStorage
+              ->create([
+                $bundle_key   => $data->id(),
+                $source_field => "https://twitter.com/$username/status/$tweet_id",
+              ])
+              ->save();
+          }
+        }
+
+        foreach ($settings['hashtags'] as $hashtag) {
+          foreach ($this->feedFetcher->getHashtagTweets($hashtag, $credentials, $settings['count'], $since) as $tweet) {
+            $tweet_id = $tweet['id'];
+            $username = $tweet['username'];
             $this->mediaStorage
               ->create([
                 $bundle_key   => $data->id(),

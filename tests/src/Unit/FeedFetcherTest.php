@@ -1,19 +1,19 @@
 <?php
 
-namespace Drupal\Tests\media_entity_twitter_pull\Unit;
+namespace Drupal\Tests\media_entity_twitter_hashtag_pull\Unit;
 
-use Drupal\media_entity_twitter_pull\FeedFetcher;
-use Drupal\media_entity_twitter_pull\TwitterAPIFactory;
-use Drupal\Tests\media_entity_twitter_pull\Traits\MediaEntityTwitterPullMockTrait;
+use Drupal\media_entity_twitter_hashtag_pull\FeedFetcher;
+use Drupal\media_entity_twitter_hashtag_pull\TwitterAPIFactory;
+use Drupal\Tests\media_entity_twitter_hashtag_pull\Traits\MediaEntityTwitterHashtagPullMockTrait;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * @coversDefaultClass \Drupal\media_entity_twitter_pull\FeedFetcher
- * @group media_entity_twitter_pull
+ * @coversDefaultClass \Drupal\media_entity_twitter_hashtag_pull\FeedFetcher
+ * @group media_entity_twitter_hashtag_pull
  */
 class FeedFetcherTest extends UnitTestCase {
 
-  use MediaEntityTwitterPullMockTrait;
+  use MediaEntityTwitterHashtagPullMockTrait;
 
   /**
    * @covers ::getUserTimelineTweets

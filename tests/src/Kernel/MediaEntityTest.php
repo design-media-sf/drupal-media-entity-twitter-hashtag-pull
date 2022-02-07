@@ -1,24 +1,24 @@
 <?php
 
-namespace Drupal\Tests\media_entity_twitter_pull\Kernel;
+namespace Drupal\Tests\media_entity_twitter_hashtag_pull\Kernel;
 
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\media\Entity\Media;
 use Drupal\media\Entity\MediaType;
-use Drupal\media_entity_twitter_pull\TwitterAPIFactory;
-use Drupal\Tests\media_entity_twitter_pull\Traits\MediaEntityTwitterPullMockTrait;
+use Drupal\media_entity_twitter_hashtag_pull\TwitterAPIFactory;
+use Drupal\Tests\media_entity_twitter_hashtag_pull\Traits\MediaEntityTwitterHashtagPullMockTrait;
 
 /**
  * Tests media entity interactions.
  *
- * @group media_entity_twitter_pull
+ * @group media_entity_twitter_hashtag_pull
  * @requires module media_entity_twitter
  */
 class MediaEntityTest extends KernelTestBase {
 
-  use MediaEntityTwitterPullMockTrait;
+  use MediaEntityTwitterHashtagPullMockTrait;
 
   /**
    * {@inheritdoc}
@@ -29,7 +29,7 @@ class MediaEntityTest extends KernelTestBase {
     'image',
     'media',
     'media_entity_twitter',
-    'media_entity_twitter_pull',
+    'media_entity_twitter_hashtag_pull',
     'system',
     'user',
   ];
@@ -75,6 +75,7 @@ class MediaEntityTest extends KernelTestBase {
     ];
     $this->settings = [
       'usernames' => [$this->randomMachineName(), $this->randomMachineName()],
+      'hashtags' => [$this->randomMachineName(), $this->randomMachineName()],
       'count'     => rand(2, 5),
     ];
 
@@ -86,7 +87,7 @@ class MediaEntityTest extends KernelTestBase {
         'use_twitter_api' => TRUE,
       ] + $this->credentials,
       'third_party_settings' => [
-        'media_entity_twitter_pull' => $this->settings,
+        'media_entity_twitter_hashtag_pull' => $this->settings,
       ],
     ])->save();
 
@@ -102,10 +103,10 @@ class MediaEntityTest extends KernelTestBase {
   /**
    * Tests tracking of the newest tweet ID per bundle.
    *
-   * @see media_entity_twitter_pull_media_insert()
-   * @see media_entity_twitter_pull_media_update()
-   * @see media_entity_twitter_pull_media_delete()
-   * @see media_entity_twitter_pull_media_type_delete()
+   * @see media_entity_twitter_hashtag_pull_media_insert()
+   * @see media_entity_twitter_hashtag_pull_media_update()
+   * @see media_entity_twitter_hashtag_pull_media_delete()
+   * @see media_entity_twitter_hashtag_pull_media_type_delete()
    */
   public function testNewestTweetState() {
     $state = $this->container->get('state');
@@ -114,12 +115,12 @@ class MediaEntityTest extends KernelTestBase {
       $this->sourceField => 'https://twitter.com/drupal/status/1299031518027939841',
     ]);
 
-    $value = $state->get('media_entity_twitter_pull.tweet');
+    $value = $state->get('media_entity_twitter_hashtag_pull.tweet');
     $this->assertNull($value, 'State still null when media created.');
 
     $entity->save();
 
-    $value = $state->get('media_entity_twitter_pull.tweet');
+    $value = $state->get('media_entity_twitter_hashtag_pull.tweet');
     $this->assertEquals(1299031518027939841, $value, 'State updated on save.');
 
     Media::create([
@@ -127,7 +128,7 @@ class MediaEntityTest extends KernelTestBase {
       $this->sourceField => 'https://twitter.com/drupal/status/1298563366009659393',
     ])->save();
 
-    $value = $state->get('media_entity_twitter_pull.tweet');
+    $value = $state->get('media_entity_twitter_hashtag_pull.tweet');
     $this->assertEquals(1299031518027939841, $value, 'State not updated with older tweet.');
 
     $entity = Media::create([
@@ -136,29 +137,29 @@ class MediaEntityTest extends KernelTestBase {
     ]);
     $entity->save();
 
-    $value = $state->get('media_entity_twitter_pull.tweet');
+    $value = $state->get('media_entity_twitter_hashtag_pull.tweet');
     $this->assertEquals(1299248854232072193, $value, 'State updated with newer tweet.');
 
     $entity->delete();
 
-    $value = $state->get('media_entity_twitter_pull.tweet');
+    $value = $state->get('media_entity_twitter_hashtag_pull.tweet');
     $this->assertEquals(1299031518027939841, $value, 'State updated newest tweet on delete.');
 
     MediaType::load('tweet')->delete();
 
-    $value = $state->get('media_entity_twitter_pull.tweet');
+    $value = $state->get('media_entity_twitter_hashtag_pull.tweet');
     $this->assertNull($value, 'State deleted when media type deleted.');
   }
 
   /**
    * Tests twitter media entity creation from cron run.
    *
-   * @see media_entity_twitter_pull_cron()
-   * @see \Drupal\media_entity_twitter_pull\Plugin\QueueWorker\MediaEntityTwitterPullFetch
+   * @see media_entity_twitter_hashtag_pull_cron()
+   * @see \Drupal\media_entity_twitter_hashtag_pull\Plugin\QueueWorker\MediaEntityTwitterHashtagPullFetch
    */
   public function testCron() {
     $since = rand(1, 1000);
-    $this->container->get('state')->set('media_entity_twitter_pull.tweet', $since);
+    $this->container->get('state')->set('media_entity_twitter_hashtag_pull.tweet', $since);
 
     $exchange_0 = $this->createApiMock(
       "?screen_name={$this->settings['usernames'][0]}&count={$this->settings['count']}&include_rts=1&since_id=$since",
@@ -174,7 +175,7 @@ class MediaEntityTest extends KernelTestBase {
       ->method('fromCredentials')
       ->with($this->credentials)
       ->willReturn($exchange_0, $exchange_1);
-    $this->container->set('media_entity_twitter_pull.twitter_api_factory', $factory);
+    $this->container->set('media_entity_twitter_hashtag_pull.twitter_api_factory', $factory);
 
     $this->container->get('cron')->run();
 

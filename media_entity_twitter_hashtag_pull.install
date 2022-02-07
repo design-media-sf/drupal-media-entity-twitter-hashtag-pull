@@ -8,14 +8,14 @@
 /**
  * Implements hook_uninstall().
  */
-function media_entity_twitter_pull_uninstall() {
+function media_entity_twitter_hashtag_pull_uninstall() {
   $bundles = \Drupal::entityTypeManager()
     ->getStorage('media_type')
     ->loadMultiple();
 
   $keys = [];
   foreach ($bundles as $bundle) {
-    $keys[] = 'media_entity_twitter_pull.' . $bundle->id();
+    $keys[] = 'media_entity_twitter_hashtag_pull.' . $bundle->id();
   }
 
   \Drupal::state()->deleteMultiple($keys);

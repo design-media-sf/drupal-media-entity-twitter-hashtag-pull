@@ -1,10 +1,14 @@
 # Schema for configuration files of the Media entity Twitter: Automatic Pull module.
 
-media.type.*.third_party.media_entity_twitter_pull:
+media.type.*.third_party.media_entity_twitter_hashtag_pull:
   type: mapping
   label: 'Automatic Pull settings'
   mapping:
     usernames:
+      type: sequence
+      sequence:
+        type: string
+    hashtags:
       type: sequence
       sequence:
         type: string

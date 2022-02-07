@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\media_entity_twitter_pull;
+namespace Drupal\media_entity_twitter_hashtag_pull;
 
 /**
  * Helper class to construct a Twitter API communications object.

@@ -12,9 +12,9 @@ use Drupal\media\MediaTypeInterface;
 /**
  * Implements hook_help().
  */
-function media_entity_twitter_pull_help($route_name) {
+function media_entity_twitter_hashtag_pull_help($route_name) {
   switch ($route_name) {
-    case 'help.page.media_entity_twitter_pull':
+    case 'help.page.media_entity_twitter_hashtag_pull':
       return '<p>' . t('The Media entity Twitter: Automatic Pull module can be used to automatically fetch tweets from Twitter for configured Twitter accounts and create Twitter media entities from them. This module will check each media entity type that uses the Twitter source from <a href=":media_entity_twitter">Media entity Twitter</a> and has <em>Usernames</em> configured for it. To configure fetching options for a media type, look on its edit form for the <em>Automatic Pull</em> form section.', [':media_entity_twitter' => 'https://www.drupal.org/project/media_entity_twitter']) . '</p>';
   }
 }
@@ -22,9 +22,11 @@ function media_entity_twitter_pull_help($route_name) {
 /**
  * Implements hook_ENTITY_TYPE_insert() for media.
  */
-function media_entity_twitter_pull_media_insert(MediaInterface $entity) {
-  if (!empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_pull', 'usernames'))) {
-    $state_key = "media_entity_twitter_pull.{$entity->bundle()}";
+function media_entity_twitter_hashtag_pull_media_insert(MediaInterface $entity) {
+  $has_usernames = !empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'usernames'));
+  $has_hashtags = !empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'hashtags'));
+  if ($has_usernames || $has_hashtags) {
+    $state_key = "media_entity_twitter_hashtag_pull.{$entity->bundle()}";
     $newest_id = \Drupal::state()->get($state_key, 1);
 
     $id = (int) $entity->getSource()->getMetadata($entity, 'id');
@@ -37,9 +39,11 @@ function media_entity_twitter_pull_media_insert(MediaInterface $entity) {
 /**
  * Implements hook_ENTITY_TYPE_update() for media.
  */
-function media_entity_twitter_pull_media_update(MediaInterface $entity) {
-  if (!empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_pull', 'usernames'))) {
-    $state_key = "media_entity_twitter_pull.{$entity->bundle()}";
+function media_entity_twitter_hashtag_pull_media_update(MediaInterface $entity) {
+  $has_usernames = !empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'usernames'));
+  $has_hashtags = !empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'hashtags'));
+  if ($has_usernames || $has_hashtags) {
+    $state_key = "media_entity_twitter_hashtag_pull.{$entity->bundle()}";
     $newest_id = \Drupal::state()->get($state_key, 1);
 
     $id = (int) $entity->getSource()->getMetadata($entity, 'id');
@@ -72,8 +76,10 @@ function media_entity_twitter_pull_media_update(MediaInterface $entity) {
 /**
  * Implements hook_ENTITY_TYPE_delete() for media.
  */
-function media_entity_twitter_pull_media_delete(MediaInterface $entity) {
-  if (!empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_pull', 'usernames'))) {
+function media_entity_twitter_hashtag_pull_media_delete(MediaInterface $entity) {
+  $has_usernames = !empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'usernames'));
+  $has_hashtags = !empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'hashtags'));
+  if ($has_usernames || $has_hashtags) {
     $bundle    = $entity->bundle();
     $newest_id = 1;
 
@@ -88,30 +94,32 @@ function media_entity_twitter_pull_media_delete(MediaInterface $entity) {
       }
     }
 
-    \Drupal::state()->set("media_entity_twitter_pull.$bundle", $newest_id);
+    \Drupal::state()->set("media_entity_twitter_hashtag_pull.$bundle", $newest_id);
   }
 }
 
 /**
  * Implements hook_media_type_delete().
  */
-function media_entity_twitter_pull_media_type_delete(MediaTypeInterface $entity) {
-  \Drupal::state()->delete("media_entity_twitter_pull.{$entity->id()}");
+function media_entity_twitter_hashtag_pull_media_type_delete(MediaTypeInterface $entity) {
+  \Drupal::state()->delete("media_entity_twitter_hashtag_pull.{$entity->id()}");
 }
 
 /**
  * Implements hook_cron().
  */
-function media_entity_twitter_pull_cron() {
-  $queue = \Drupal::queue('media_entity_twitter_pull_fetch');
+function media_entity_twitter_hashtag_pull_cron() {
+  $queue = \Drupal::queue('media_entity_twitter_hashtag_pull_fetch');
 
   /** @var \Drupal\media\MediaTypeInterface[] $bundles */
   $bundles = \Drupal::entityTypeManager()
     ->getStorage('media_type')
     ->loadByProperties(['source' => 'twitter']);
   foreach ($bundles as $bundle) {
+    $has_usernames = !empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'usernames'));
+    $has_hashtags = !empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'hashtags'));
     if (
-      !empty($bundle->getThirdPartySetting('media_entity_twitter_pull', 'usernames'))
+      ($has_usernames || $has_hashtags)
       && $bundle->getSource()->getConfiguration()['use_twitter_api']
     ) {
       $queue->createItem($bundle);
@@ -122,25 +130,31 @@ function media_entity_twitter_pull_cron() {
 /**
  * Implements hook_form_FORM_ID_alter() for media_type_edit_form.
  */
-function media_entity_twitter_pull_form_media_type_edit_form_alter(array &$form, FormStateInterface $form_state) {
+function media_entity_twitter_hashtag_pull_form_media_type_edit_form_alter(array &$form, FormStateInterface $form_state) {
   /** @var \Drupal\media\MediaTypeInterface $bundle */
   $bundle = $form_state->getFormObject()->getEntity();
 
   if ($bundle->getSource()->getPluginId() == 'twitter') {
-    $settings = $bundle->getThirdPartySettings('media_entity_twitter_pull');
-    $settings += ['usernames' => [], 'count' => NULL];
+    $settings = $bundle->getThirdPartySettings('media_entity_twitter_hashtag_pull');
+    $settings += ['usernames' => [], 'hashtags' => [], 'count' => NULL];
 
-    $form['media_entity_twitter_pull'] = [
+    $form['media_entity_twitter_hashtag_pull'] = [
       '#type' => 'details',
       '#tree' => TRUE,
       '#title' => t('Automatic Pull'),
-      '#description' => t('Automatically fetch new tweets from Twitter via cron. <em>Usernames</em> option must not be empty for this to happen.'),
+      '#description' => t('Automatically fetch new tweets from Twitter via cron. Either the <em>Usernames</em> or <em>Hashtags</em> option must not be empty for this to happen.'),
       '#group' => 'additional_settings',
       'usernames' => [
         '#type' => 'textfield',
         '#title' => t('Usernames'),
         '#description' => t('Fetch tweets from these user accounts, separated by comma. Do not add the @ symbol.'),
         '#default_value' => implode(', ', $settings['usernames']),
+      ],
+      'hashtags' => [
+        '#type' => 'textfield',
+        '#title' => t('Hashtags'),
+        '#description' => t('Fetch tweets containing these hashtags, separated by comma. Do not add the # symbol.'),
+        '#default_value' => implode(', ', $settings['hashtags']),
       ],
       'count' => [
         '#type' => 'number',
@@ -152,25 +166,30 @@ function media_entity_twitter_pull_form_media_type_edit_form_alter(array &$form,
         '#max' => 200,
       ],
     ];
-    $form['#entity_builders'][] = 'media_entity_twitter_pull_media_builder';
+    $form['#entity_builders'][] = 'media_entity_twitter_hashtag_pull_media_builder';
   }
 }
 
 /**
  * Entity form builder to add automatic pull settings to a media type.
  */
-function media_entity_twitter_pull_media_builder($entity_type, MediaTypeInterface $entity, &$form, FormStateInterface $form_state) {
-  $settings = $form_state->getValue('media_entity_twitter_pull');
+function media_entity_twitter_hashtag_pull_media_builder($entity_type, MediaTypeInterface $entity, &$form, FormStateInterface $form_state) {
+  $settings = $form_state->getValue('media_entity_twitter_hashtag_pull');
   $usernames = array_filter(preg_split('/\W+/', $settings['usernames']));
+  $hashtags = array_filter(preg_split('/\W+/', $settings['hashtags']));
 
   if (!empty($usernames)) {
     $entity
-      ->setThirdPartySetting('media_entity_twitter_pull', 'usernames', $usernames)
-      ->setThirdPartySetting('media_entity_twitter_pull', 'count', $settings['count']);
-  }
-  else {
+      ->setThirdPartySetting('media_entity_twitter_hashtag_pull', 'usernames', $usernames)
+      ->setThirdPartySetting('media_entity_twitter_hashtag_pull', 'count', $settings['count']);
+  } else if (!empty($hashtags)) {
     $entity
-      ->unsetThirdPartySetting('media_entity_twitter_pull', 'usernames')
-      ->unsetThirdPartySetting('media_entity_twitter_pull', 'count');
+      ->setThirdPartySetting('media_entity_twitter_hashtag_pull', 'hashtags', $hashtags)
+      ->setThirdPartySetting('media_entity_twitter_hashtag_pull', 'count', $settings['count']);
+  } else {
+    $entity
+      ->unsetThirdPartySetting('media_entity_twitter_hashtag_pull', 'usernames')
+      ->unsetThirdPartySetting('media_entity_twitter_hashtag_pull', 'hashtags')
+      ->unsetThirdPartySetting('media_entity_twitter_hashtag_pull', 'count');
   }
 }

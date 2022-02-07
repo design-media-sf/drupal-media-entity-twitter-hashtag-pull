@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\media_entity_twitter_pull;
+namespace Drupal\media_entity_twitter_hashtag_pull;
 
 /**
  * Describes the interface for a tweet feed fetcher.
@@ -27,5 +27,6 @@ interface FeedFetcherInterface {
    *   List of tweet IDs.
    */
   public function getUserTimelineTweets($username, array $credentials, $count = 200, $since_id = 1);
+  public function getHashtagTweets($hashtag, array $credentials, $count = 200, $since_id = 1);
 
 }
