@@ -1,7 +1,7 @@
 {
   "name": "design-media-sf/media_entity_twitter_hashtag_pull",
   "description": "Automatically creates new Twitter media entities from Twitter when there are new Tweets.",
-  "type": "drupal-module",
+  "type": "drupal-custom-module",
   "require": {
     "drupal/media_entity_twitter": "^2.0",
     "j7mbo/twitter-api-php": "~1.0"
