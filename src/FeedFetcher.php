@@ -53,7 +53,9 @@ class FeedFetcher implements FeedFetcherInterface {
       ->performRequest();
 
     $tweets = [];
-    foreach (json_decode($response, TRUE) as $tweet) {
+    $decoded_response = json_decode($response, TRUE);
+    $tweets_response = $decoded_response['statuses'];
+    foreach ($tweets_response as $tweet) {
       $tweets[] = ["id" => $tweet['id'], "username" => $tweet['user']['screen_name']];
     }
 
