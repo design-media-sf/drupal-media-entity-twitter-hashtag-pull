@@ -116,8 +116,8 @@ function media_entity_twitter_hashtag_pull_cron() {
     ->getStorage('media_type')
     ->loadByProperties(['source' => 'twitter']);
   foreach ($bundles as $bundle) {
-    $has_usernames = !empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'usernames'));
-    $has_hashtags = !empty($entity->bundle->entity->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'hashtags'));
+    $has_usernames = !empty($bundle->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'usernames'));
+    $has_hashtags = !empty($bundle->getThirdPartySetting('media_entity_twitter_hashtag_pull', 'hashtags'));
     if (
       ($has_usernames || $has_hashtags)
       && $bundle->getSource()->getConfiguration()['use_twitter_api']
